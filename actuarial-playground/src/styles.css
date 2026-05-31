@@ -1,0 +1,513 @@
+/* ═══════════════════════════════════════════════════════════════
+   寿险精算 Playground — Global Styles
+   ═══════════════════════════════════════════════════════════════ */
+
+:root {
+  --bg: #0f172a;
+  --bg-panel: #1e293b;
+  --bg-card: #334155;
+  --text: #e2e8f0;
+  --text-dim: #94a3b8;
+  --blue: #3b82f6;
+  --green: #22c55e;
+  --purple: #a855f7;
+  --red: #ef4444;
+  --orange: #f59e0b;
+  --border: #475569;
+  --radius: 8px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  overflow: hidden;
+  height: 100vh;
+}
+
+#root { height: 100vh; }
+
+/* ═══════════════════════════════════════════════════════
+   App Shell
+   ═══════════════════════════════════════════════════════ */
+
+.app-shell { display: flex; flex-direction: column; height: 100vh; }
+
+.app-header {
+  display: flex; align-items: center; gap: 16px;
+  padding: 8px 16px; background: var(--bg-panel);
+  border-bottom: 1px solid var(--border); z-index: 10; flex-shrink: 0;
+}
+
+.app-title { font-size: 1.1rem; font-weight: 700; white-space: nowrap; }
+
+.app-tabs { display: flex; gap: 4px; }
+
+.app-tab {
+  padding: 6px 14px; border: 1px solid var(--border); border-radius: var(--radius);
+  background: transparent; color: var(--text-dim); cursor: pointer;
+  font-size: 0.875rem; transition: all 0.15s;
+}
+.app-tab:hover { background: var(--bg-card); color: var(--text); }
+.app-tab.active { background: var(--blue); color: white; border-color: var(--blue); }
+
+.app-header-right { margin-left: auto; }
+
+.glossary-search {
+  padding: 6px 12px; border: 1px solid var(--border); border-radius: var(--radius);
+  background: var(--bg); color: var(--text); font-size: 0.8rem; width: 220px;
+}
+.glossary-search:focus { outline: none; border-color: var(--blue); }
+
+/* ═══════════════════════════════════════════════════════
+   Main Layout
+   ═══════════════════════════════════════════════════════ */
+
+.app-main { display: flex; flex: 1; overflow: hidden; position: relative; }
+
+.app-sidebar {
+  width: 300px; min-width: 300px; background: var(--bg-panel);
+  border-right: 1px solid var(--border); overflow-y: auto; padding: 12px;
+  z-index: 5;
+}
+
+.app-canvas { flex: 1; position: relative; }
+
+.app-detail-panel {
+  width: 380px; min-width: 380px; background: var(--bg-panel);
+  border-left: 1px solid var(--border); overflow-y: auto;
+  z-index: 5;
+}
+
+/* ═══════════════════════════════════════════════════════
+   Sidebar
+   ═══════════════════════════════════════════════════════ */
+
+.sidebar-section { margin-bottom: 16px; }
+.sidebar-section h3 { font-size: 0.9rem; margin-bottom: 8px; }
+.sidebar-hint { font-size: 0.75rem; color: var(--text-dim); margin: 4px 0; }
+
+.sidebar-btn {
+  width: 100%; padding: 8px 12px; border: 1px solid var(--border);
+  border-radius: var(--radius); background: var(--bg-card); color: var(--text);
+  cursor: pointer; font-size: 0.85rem; transition: all 0.15s;
+}
+.sidebar-btn:hover:not(:disabled) { background: var(--blue); border-color: var(--blue); }
+.sidebar-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.copilot-input {
+  width: 100%; padding: 8px; border: 1px solid var(--border);
+  border-radius: var(--radius); background: var(--bg); color: var(--text);
+  font-size: 0.8rem; resize: vertical; margin: 8px 0;
+}
+
+.copilot-placeholder {
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: center; height: 100%; color: var(--text-dim);
+}
+.copilot-placeholder h2 { font-size: 1.5rem; margin-bottom: 8px; }
+
+/* ═══════════════════════════════════════════════════════
+   Preset List
+   ═══════════════════════════════════════════════════════ */
+
+.preset-list { margin-bottom: 12px; }
+.preset-list-title { font-size: 0.9rem; margin-bottom: 8px; }
+
+.preset-chapter { margin-bottom: 6px; }
+.preset-chapter-title {
+  font-size: 0.8rem; font-weight: 600; padding: 4px 0;
+  cursor: pointer; color: var(--text-dim);
+}
+.preset-chapter-title:hover { color: var(--text); }
+
+.preset-items { display: flex; flex-direction: column; gap: 3px; padding-left: 8px; }
+
+.preset-item {
+  display: flex; align-items: center; gap: 6px; padding: 5px 8px;
+  border: 1px solid transparent; border-radius: 4px;
+  background: transparent; color: var(--text-dim); cursor: pointer;
+  font-size: 0.78rem; text-align: left; transition: all 0.15s;
+}
+.preset-item:hover { background: var(--bg-card); color: var(--text); }
+.preset-item.active { background: var(--blue); color: white; border-color: var(--blue); }
+
+.preset-item-badge {
+  font-size: 0.65rem; font-weight: 700; padding: 1px 5px;
+  border-radius: 3px; background: var(--bg-card); color: var(--blue);
+}
+.preset-item.active .preset-item-badge { background: white; color: var(--blue); }
+
+/* ═══════════════════════════════════════════════════════
+   What-If Panel
+   ═══════════════════════════════════════════════════════ */
+
+.whatif-panel {
+  margin-top: 12px; padding: 10px;
+  border: 1px solid var(--border); border-radius: var(--radius);
+  background: var(--bg);
+}
+.whatif-title { font-size: 0.85rem; margin-bottom: 4px; }
+.whatif-hint { font-size: 0.7rem; color: var(--text-dim); margin-bottom: 8px; }
+
+.whatif-slider { margin-bottom: 10px; }
+.whatif-slider label { display: flex; gap: 4px; font-size: 0.78rem; margin-bottom: 2px; }
+.whatif-slider label strong { color: var(--blue); }
+.whatif-default { color: var(--text-dim); font-size: 0.7rem; }
+.whatif-slider input[type="range"] { width: 100%; accent-color: var(--blue); }
+.whatif-result { font-size: 0.78rem; color: var(--green); }
+
+/* ═══════════════════════════════════════════════════════
+   Knowledge Graph Nodes
+   ═══════════════════════════════════════════════════════ */
+
+.formula-node {
+  padding: 8px 12px; border-radius: var(--radius);
+  border: 2px solid var(--border); background: var(--bg-card);
+  min-width: 140px; text-align: center; cursor: pointer;
+  transition: all 0.2s; font-size: 0.8rem;
+}
+.formula-node:hover { border-color: var(--blue); transform: scale(1.05); }
+
+.formula-node-leaf { border-color: #166534; background: #14532d40; }
+.formula-node-derived { border-color: #1e3a5f; background: #1e3a5f40; }
+.formula-node-highlighted { border-color: var(--orange) !important; box-shadow: 0 0 16px var(--orange); }
+.formula-node-in-path { border-color: var(--blue); }
+.formula-node-selected { box-shadow: 0 0 12px var(--blue); }
+
+.formula-node-header { display: flex; gap: 6px; justify-content: center; margin-bottom: 4px; }
+.formula-node-chapter {
+  font-size: 0.6rem; padding: 1px 5px; border-radius: 3px;
+  background: var(--blue); color: white; font-weight: 600;
+}
+.formula-node-category { font-size: 0.65rem; color: var(--text-dim); }
+
+.formula-node-symbol { margin: 4px 0; }
+.formula-node-symbol .katex { font-size: 1.1rem; }
+.formula-node-name { font-size: 0.7rem; color: var(--text-dim); }
+
+.formula-node-unknown { border-color: var(--red); background: #7f1d1d40; }
+
+/* ═══════════════════════════════════════════════════════
+   Workflow Nodes
+   ═══════════════════════════════════════════════════════ */
+
+.wf-node {
+  padding: 10px 14px; border-radius: var(--radius);
+  border: 2px solid var(--border); background: var(--bg-card);
+  min-width: 160px; font-size: 0.8rem;
+}
+.wf-node-input { border-color: var(--green); background: #14532d30; }
+.wf-node-compute { border-color: var(--blue); background: #1e3a5f30; }
+.wf-node-output { border-color: var(--orange); background: #78350f30; }
+.wf-node-theorem {
+  border-color: #d4a017; background: #3d2e0a30;
+  border-style: dashed; border-width: 2px; min-width: 200px;
+}
+.wf-node-theorem .wf-node-header.theorem .wf-node-badge { background: #d4a017; color: #1a1a1a; }
+.wf-node-theorem .wf-node-specific .katex { color: #f5c842; }
+.wf-node-error { border-color: var(--red) !important; }
+
+.wf-node-header { display: flex; align-items: center; gap: 6px; margin-bottom: 4px; }
+.wf-node-badge {
+  font-size: 0.6rem; font-weight: 700; padding: 1px 5px;
+  border-radius: 3px; color: white;
+}
+.wf-node-header.input .wf-node-badge { background: var(--green); }
+.wf-node-header.compute .wf-node-badge { background: var(--blue); }
+.wf-node-header.output .wf-node-badge { background: var(--orange); }
+.wf-node-label { font-weight: 600; }
+
+.wf-node-formula { margin: 4px 0; }
+.wf-node-formula .katex { font-size: 1rem; }
+.wf-node-specific { margin: 4px 0; padding: 3px 6px; background: var(--bg); border-radius: 4px; }
+.wf-node-specific .katex { font-size: 0.95rem; font-weight: 600; }
+
+.wf-node-params { display: flex; flex-wrap: wrap; gap: 3px; margin-top: 4px; }
+.wf-node-param {
+  font-size: 0.65rem; padding: 1px 5px; border-radius: 3px;
+  background: var(--bg); color: var(--text-dim);
+}
+
+.wf-node-result {
+  margin-top: 6px; padding: 4px 8px; border-radius: 4px;
+  font-weight: 700; font-family: 'JetBrains Mono', 'Consolas', monospace;
+}
+.wf-node-result.ok { background: #14532d40; color: var(--green); }
+.wf-node-result.error { background: #7f1d1d40; color: var(--red); }
+
+/* ═══════════════════════════════════════════════════════
+   Workflow Panel (top-right)
+   ═══════════════════════════════════════════════════════ */
+
+.wf-panel {
+  display: flex; gap: 8px; align-items: center;
+  padding: 8px 12px; border-radius: var(--radius);
+  background: var(--bg-panel); border: 1px solid var(--border);
+}
+
+.wf-btn {
+  padding: 8px 16px; border-radius: var(--radius); border: none;
+  font-weight: 600; cursor: pointer; font-size: 0.85rem;
+  transition: all 0.15s;
+}
+.wf-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.wf-btn-compute { background: var(--blue); color: white; }
+.wf-btn-compute:hover:not(:disabled) { background: #2563eb; }
+.wf-btn-verify { background: var(--green); color: white; }
+.wf-btn-verify:hover:not(:disabled) { background: #16a34a; }
+
+.wf-verify-msg { font-size: 0.78rem; color: var(--text-dim); white-space: nowrap; }
+
+/* ═══════════════════════════════════════════════════════
+   Formula Detail Panel
+   ═══════════════════════════════════════════════════════ */
+
+.formula-panel { padding: 16px; }
+.formula-panel-empty { display: flex; align-items: center; justify-content: center; height: 100%; }
+
+.formula-panel-close {
+  float: right; padding: 2px 8px; border: none; background: transparent;
+  color: var(--text-dim); cursor: pointer; font-size: 1.2rem;
+}
+.formula-panel-close:hover { color: var(--text); }
+
+.formula-panel-title { margin-bottom: 4px; }
+.formula-panel-chapter {
+  display: inline-block; font-size: 0.75rem; color: var(--blue);
+  margin-bottom: 12px;
+}
+
+.formula-panel-section { margin-bottom: 16px; }
+.formula-panel-section h3 {
+  font-size: 0.8rem; color: var(--text-dim);
+  text-transform: uppercase; margin-bottom: 6px;
+  border-bottom: 1px solid var(--border); padding-bottom: 3px;
+}
+.formula-panel-section p { font-size: 0.85rem; line-height: 1.5; }
+
+.formula-panel-latex { padding: 8px; background: var(--bg); border-radius: var(--radius); }
+
+.formula-panel-params { display: flex; flex-wrap: wrap; gap: 4px; }
+.param-tag {
+  font-size: 0.7rem; padding: 2px 8px; border-radius: 12px;
+  background: var(--bg-card); color: var(--text-dim);
+}
+.param-tag.output { background: #14532d30; color: var(--green); }
+
+.formula-panel-deps { display: flex; flex-wrap: wrap; gap: 4px; }
+
+.dep-link {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 3px 8px; border: 1px solid var(--border);
+  border-radius: 12px; background: var(--bg);
+  color: var(--text); cursor: pointer; font-size: 0.75rem;
+  transition: all 0.15s;
+}
+.dep-link:hover { border-color: var(--blue); background: var(--bg-card); }
+.dep-link.in-path { border-color: var(--blue); background: #1e3a5f30; }
+.dep-name { color: var(--text-dim); font-size: 0.7rem; }
+
+.relation-group {
+  display: flex; align-items: center; gap: 4px; flex-wrap: wrap;
+  margin-bottom: 6px; font-size: 0.78rem;
+}
+.relation-label { color: var(--text-dim); font-size: 0.7rem; }
+
+.source-file { font-size: 0.7rem; color: var(--text-dim); font-style: italic; }
+
+/* ═══════════════════════════════════════════════════════
+   Glossary
+   ═══════════════════════════════════════════════════════ */
+
+.glossary-tooltip-trigger { position: relative; cursor: help; border-bottom: 1px dotted var(--blue); }
+
+.glossary-tooltip {
+  position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%);
+  padding: 8px 12px; border-radius: var(--radius);
+  background: var(--bg-card); border: 1px solid var(--border);
+  min-width: 200px; z-index: 100; font-size: 0.8rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+.glossary-def { display: block; margin-top: 4px; color: var(--text); }
+.glossary-chapter { display: block; margin-top: 2px; font-size: 0.7rem; color: var(--text-dim); }
+
+.glossary-card {
+  padding: 8px; margin: 4px 0; border-radius: var(--radius);
+  background: var(--bg); border: 1px solid var(--border);
+}
+.glossary-card-latex { margin-bottom: 4px; }
+.glossary-card-def { font-size: 0.8rem; }
+.glossary-card-meta { font-size: 0.7rem; color: var(--text-dim); margin-top: 4px; }
+
+.glossary-results {
+  position: absolute; top: 8px; right: 8px; max-width: 360px;
+  max-height: 400px; overflow-y: auto; padding: 12px;
+  background: var(--bg-panel); border: 1px solid var(--border);
+  border-radius: var(--radius); z-index: 50; box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+}
+.glossary-results h4 { font-size: 0.85rem; margin-bottom: 8px; }
+.glossary-result-item {
+  padding: 4px 0; border-bottom: 1px solid var(--border);
+  font-size: 0.78rem;
+}
+.glossary-result-item strong { color: var(--blue); }
+.glossary-result-chapter { float: right; font-size: 0.65rem; color: var(--text-dim); }
+
+/* ═══════════════════════════════════════════════════════
+   Preset Banner (above workflow canvas)
+   ═══════════════════════════════════════════════════════ */
+
+.preset-banner {
+  padding: 10px 16px; background: var(--bg-card);
+  border-bottom: 1px solid var(--border);
+}
+.preset-banner-header { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+.preset-banner-badge { font-size: 0.75rem; font-weight: 600; color: var(--orange); }
+.preset-banner-source { font-size: 0.7rem; color: var(--text-dim); }
+.preset-banner-title { font-size: 0.95rem; margin-bottom: 4px; }
+.preset-banner-desc { font-size: 0.82rem; color: var(--text-dim); line-height: 1.5; }
+.preset-banner-expected { margin-top: 6px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.preset-banner-expected-label { font-size: 0.75rem; color: var(--green); }
+.preset-banner-value {
+  font-size: 0.72rem; padding: 2px 8px; border-radius: 4px;
+  background: #14532d30; color: var(--green);
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+}
+
+/* ═══════════════════════════════════════════════════════
+   Canvas containers (React Flow requires explicit height)
+   ═══════════════════════════════════════════════════════ */
+
+.knowledge-graph { width: 100%; height: 100%; }
+.workflow-builder { width: 100%; height: 100%; }
+
+/* ═══════════════════════════════════════════════════════
+   React Flow overrides
+   ═══════════════════════════════════════════════════════ */
+
+.react-flow__node { font-size: 0.8rem; }
+
+.react-flow__background { background: var(--bg) !important; }
+
+.react-flow__controls button {
+  background: var(--bg-card) !important; border-color: var(--border) !important;
+  color: var(--text) !important; fill: var(--text) !important;
+}
+.react-flow__controls button:hover { background: var(--bg-panel) !important; }
+
+.react-flow__minimap {
+  background: var(--bg-card) !important; border: 1px solid var(--border) !important;
+}
+
+.react-flow__edge-path { stroke: var(--border); }
+
+/* ═══════════════════════════════════════════════════════
+   Scrollbar
+   ═══════════════════════════════════════════════════════ */
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ═══════════════════════════════════════════════════════
+   Formula Side Panel (right-side slide-in)
+   ═══════════════════════════════════════════════════════ */
+
+.wf-node-subcategory {
+  font-size: 0.7rem; color: var(--blue); cursor: pointer;
+  text-decoration: underline dotted;
+}
+.wf-node-subcategory:hover { color: var(--text); }
+
+.formula-side-panel {
+  width: 420px; min-width: 420px; max-width: 480px;
+  height: 100%; overflow-y: auto;
+  background: var(--bg-panel); border-left: 1px solid var(--border);
+  z-index: 5; display: flex; flex-direction: column;
+}
+
+.formula-side-panel-header {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  padding: 16px 16px 8px; border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.formula-side-panel-header h3 { font-size: 1rem; }
+
+.formula-side-panel-close {
+  padding: 2px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: transparent; color: var(--text-dim); cursor: pointer; font-size: 1rem;
+}
+.formula-side-panel-close:hover { background: var(--red); color: white; border-color: var(--red); }
+
+.formula-side-panel-body { padding: 12px 16px; flex: 1; overflow-y: auto; }
+
+.formula-side-badge {
+  display: inline-block; font-size: 0.72rem; padding: 2px 8px;
+  border-radius: 10px; background: var(--blue); color: white; margin-bottom: 12px;
+}
+
+.formula-side-section { margin-bottom: 20px; }
+.formula-side-section h4 {
+  font-size: 0.75rem; color: var(--text-dim); text-transform: uppercase;
+  border-bottom: 1px solid var(--border); padding-bottom: 4px; margin-bottom: 8px;
+}
+.formula-side-section p { font-size: 0.85rem; line-height: 1.5; }
+
+.formula-side-latex {
+  padding: 10px; background: var(--bg); border-radius: var(--radius);
+  overflow-x: auto;
+}
+.formula-side-latex .katex-display { margin: 0.3em 0 !important; }
+
+.formula-side-params { display: flex; flex-wrap: wrap; gap: 4px; }
+.formula-side-param {
+  font-size: 0.7rem; padding: 2px 8px; border-radius: 12px;
+  background: var(--bg-card); color: var(--text-dim);
+}
+
+.formula-side-deps { display: flex; flex-wrap: wrap; gap: 4px; }
+.formula-side-dep-link {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 3px 8px; border: 1px solid var(--border); border-radius: 12px;
+  background: var(--bg); color: var(--text); cursor: pointer; font-size: 0.75rem;
+}
+.formula-side-dep-link:hover { border-color: var(--blue); background: var(--bg-card); }
+
+.formula-side-related { display: flex; flex-direction: column; gap: 10px; }
+.formula-side-related-item {
+  padding: 10px; border: 1px solid var(--border); border-radius: var(--radius);
+  background: var(--bg);
+}
+
+.formula-side-related-header { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+.formula-side-related-symbol { font-size: 0.72rem; color: var(--text-dim); }
+.formula-side-related-def { font-size: 0.78rem; color: var(--text-dim); }
+
+.formula-side-related-latex {
+  padding: 6px; background: var(--bg-card); border-radius: 4px;
+  margin-top: 4px; overflow-x: auto;
+}
+.formula-side-related-latex .katex-display { margin: 0.3em 0 !important; }
+
+.formula-side-proof p { margin-bottom: 6px; font-size: 0.85rem; line-height: 1.6; }
+.formula-side-proof-plain { color: var(--text); }
+
+.formula-side-source {
+  font-size: 0.7rem; color: var(--text-dim); font-style: italic;
+  margin-top: 12px; border-top: 1px solid var(--border); padding-top: 8px;
+}
+
+/* ═══════════════════════════════════════════════════════
+   KaTeX adjustments
+   ═══════════════════════════════════════════════════════ */
+
+.katex { font-size: 1em !important; }
+.katex-display { margin: 0.5em 0 !important; }
+.katex .enclosing.actuarial {
+  border: none !important;
+  text-decoration: none !important;
+}

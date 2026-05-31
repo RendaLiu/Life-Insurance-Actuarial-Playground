@@ -1,0 +1,54 @@
+# Dependencies
+node_modules/
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.eggs/
+dist/
+build/
+
+# IDE & Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+.env.local
+.venv/
+venv/
+
+# Build output
+actuarial-playground/dist/
+
+# Logs
+*.log
+
+# Docker (optional, usually committed but excluded here)
+# .dockerignore
+
+# Obsidian
+.obsidian/
+.claudian/
+.trash/
+
+# Copilot
+.copilot/
+
+# Temp files
+*.tmp
+*.temp
+
+# Copyrighted course materials - DO NOT UPLOAD
+*.pdf
+*.pptx
+*.pptm
+*.doc
+*.docx

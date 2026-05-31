@@ -1,0 +1,16 @@
+# actuarial-api Dockerfile
+FROM python:3.11-slim
+
+WORKDIR /app
+
+# Install actuarial-engine first (dependency)
+COPY actuarial-engine/ ./actuarial-engine/
+RUN pip install --no-cache-dir ./actuarial-engine
+
+# Install actuarial-api
+COPY actuarial-api/ ./actuarial-api/
+RUN pip install --no-cache-dir ./actuarial-api
+
+EXPOSE 8000
+
+CMD ["uvicorn", "actuarial_api.main:app", "--host", "0.0.0.0", "--port", "8000"]
