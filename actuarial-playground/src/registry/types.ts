@@ -38,6 +38,7 @@ export interface FormulaEntry {
   relatedIds?: string[];           // 相关但非直接依赖的公式
   sourceFile: string;              // 数据来源 _clean.md 文件名
   proof?: string;                  // 推导/证明过程（LaTeX + 中文，用于 THM 节点点击展示）
+  nodeType?: "definition" | "formula" | "conclusion";  // 节点类型（概念图谱布局用）
 }
 
 /** 章节分类 */

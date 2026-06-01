@@ -20,7 +20,7 @@ function InputNode({ data }: NodeProps<WFNodeData>) {
   const latex = data.label || entry?.latex || data.formulaId
   return (
     <div className="wf-node wf-node-input">
-      <Handle type="source" position={Position.Bottom} />
+      <Handle type="source" position={Position.Right} />
       <div className="wf-node-header input">
         <span className="wf-node-badge">IN</span>
       </div>
@@ -44,7 +44,7 @@ function ComputeNode({ data }: NodeProps<WFNodeData>) {
 
   return (
     <div className={`wf-node wf-node-compute ${data.resultStatus === 'error' ? 'wf-node-error' : ''}`}>
-      <Handle type="target" position={Position.Top} />
+      <Handle type="target" position={Position.Left} />
       <div className="wf-node-header compute">
         <span className="wf-node-badge">CP</span>
         <FormulaPopup formulaId={data.formulaId}>
@@ -61,7 +61,7 @@ function ComputeNode({ data }: NodeProps<WFNodeData>) {
           = {typeof data.result === 'number' ? data.result.toFixed(6) : String(data.result)}
         </div>
       )}
-      <Handle type="source" position={Position.Bottom} />
+      <Handle type="source" position={Position.Right} />
     </div>
   )
 }
@@ -70,7 +70,7 @@ function ComputeNode({ data }: NodeProps<WFNodeData>) {
 function OutputNode({ data }: NodeProps<WFNodeData>) {
   return (
     <div className={`wf-node wf-node-output ${data.resultStatus === 'error' ? 'wf-node-error' : ''}`}>
-      <Handle type="target" position={Position.Top} />
+      <Handle type="target" position={Position.Left} />
       <div className="wf-node-header output">
         <span className="wf-node-badge">OUT</span>
         <span className="wf-node-label">结果</span>
@@ -92,7 +92,7 @@ function TheoremNode({ data }: NodeProps<WFNodeData>) {
 
   return (
     <div className="wf-node wf-node-theorem" onClick={() => openFormulaPanel(data.formulaId)}>
-      <Handle type="target" position={Position.Top} />
+      <Handle type="target" position={Position.Left} />
       <div className="wf-node-header theorem">
         <span className="wf-node-badge">THM</span>
         <span className="wf-node-subcategory">
@@ -102,7 +102,7 @@ function TheoremNode({ data }: NodeProps<WFNodeData>) {
       <div className="wf-node-specific">
         <KaTeX latex={displayLatex} />
       </div>
-      <Handle type="source" position={Position.Bottom} />
+      <Handle type="source" position={Position.Right} />
     </div>
   )
 }

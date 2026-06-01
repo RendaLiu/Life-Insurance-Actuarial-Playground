@@ -8,6 +8,8 @@ import time
 from typing import Optional
 from functools import lru_cache
 
+import numpy as np
+
 from actuarial.life_table import LifeTable, CL93M_TABLE, CL93F_TABLE
 from actuarial.present_value import PresentValueCalculator
 from actuarial.net_premium import NetPremiumCalculator

@@ -207,6 +207,13 @@ export const GLOSSARY: GlossaryEntry[] = [
     definition: "选择年龄为x岁的个体在x+i岁前死亡的概率",
     chapter: 1, category: "选择生命表", isLearned: true,
   },
+  {
+    id: "gl_Yx",
+    latex: "Y_x",
+    plainText: "Yₓ",
+    definition: "Y_x = ∫_0^∞ T_{x+s} ds，生存群总未来生存时间的积分",
+    chapter: 1, category: "生命表", isLearned: true,
+  },
 
   // ═══════════════════════════════════════════════
   // 第二章：联合生命状态
@@ -473,6 +480,34 @@ export const GLOSSARY: GlossaryEntry[] = [
     latex: "a_x^{\\{m\\}}",
     plainText: "aₓ^{m}",
     definition: "完全期末终身生存年金的精算现值",
+    chapter: 5, category: "分期年金", isLearned: true,
+  },
+  {
+    id: "gl_ax_acc_cont",
+    latex: "\\overline{s}_{x:\\enclose{actuarial}{n}}",
+    plainText: "s̄_{x:n}",
+    definition: "给付率为1的n年期连续生存年金的精算终值",
+    chapter: 5, category: "连续年金", isLearned: true,
+  },
+  {
+    id: "gl_ax_acc_due",
+    latex: "\\ddot{s}_{x:\\enclose{actuarial}{n}}",
+    plainText: "s̈_{x:n}",
+    definition: "每年年初给付一个单位的n年期生存年金的精算终值",
+    chapter: 5, category: "期初年金", isLearned: true,
+  },
+  {
+    id: "gl_ax_m_due_term",
+    latex: "\\ddot{a}_{x:\\enclose{actuarial}{n}}^{(m)}",
+    plainText: "ä_{x:n}⁽ᵐ⁾",
+    definition: "每年给付总额为1，分m次期初给付的n年期生存年金的精算现值",
+    chapter: 5, category: "分期年金", isLearned: true,
+  },
+  {
+    id: "gl_ax_m_imm_term",
+    latex: "a_{x:\\enclose{actuarial}{n}}^{(m)}",
+    plainText: "a_{x:n}⁽ᵐ⁾",
+    definition: "每年给付总额为1，分m次期末给付的n年期生存年金的精算现值",
     chapter: 5, category: "分期年金", isLearned: true,
   },
 
